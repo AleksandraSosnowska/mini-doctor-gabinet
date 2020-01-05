@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="790.0" style="-fx-background-color: #1E90FF" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Doctor.DoctorCreateDescriptionController">
+    <children>
+        <TextFlow layoutX="430.0" layoutY="760.0" prefHeight="20.0" prefWidth="360.0" style="-fx-background-color: #000033; -fx-text-alignment: center; -fx-background-radius: 10px 0px 0 0;">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-family: Calibry; -fx-font-weight: 100;" text="Aleksandra Kuc - Technologie Obiektowe" textAlignment="CENTER" wrappingWidth="441.8162841796875" />
+            </children>
+        </TextFlow>
+        <Button id="menu-buttons" layoutX="268.0" layoutY="585.0" mnemonicParsing="false" onAction="#addSummary" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Dodaj podsumowanie" />
+        <Button id="menu-buttons" layoutX="422.0" layoutY="252.0" mnemonicParsing="false" onAction="#checkPatientExisting" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Wyszukaj pacjenta" />
+        <Text fill="WHITE" layoutX="150.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generowanie podsumowania wizyty pacjenta">
+            <font>
+                <Font name="Calibri Bold" size="25.0" />
+            </font>
+        </Text>
+        <TextField id="text_input" fx:id="visit_description" layoutX="424.0" layoutY="385.0" prefHeight="26.0" prefWidth="191.0" promptText="opis wizyty" stylesheets="@../style.css" />
+        <Button id="menu-buttons" layoutX="268.0" layoutY="657.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
+        <Text fill="WHITE" layoutX="138.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aby dodać podsumowanie wizyty wypełnij pola i zatwierdź przyciskiem.">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <TextField id="text_input" fx:id="medicines" layoutX="424.0" layoutY="458.0" prefHeight="26.0" prefWidth="191.0" promptText="przepisane leki" stylesheets="@../style.css" />
+        <TextField id="text_input" fx:id="patient_pesel" layoutX="422.0" layoutY="151.0" prefHeight="26.0" prefWidth="191.0" promptText="pesel pacjenta" stylesheets="@../style.css" />
+        <TextField id="text_input" fx:id="visit_date" layoutX="422.0" layoutY="202.0" prefHeight="26.0" prefWidth="191.0" promptText="data wizyty" stylesheets="@../style.css" />
+
+        <Text fill="WHITE" layoutX="158.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pesel pacjenta:">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Line endX="80.0" fill="WHITE" layoutX="258.0" layoutY="231.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="80.0" fill="WHITE" layoutX="258.0" layoutY="181.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="80.0" fill="WHITE" layoutX="260.0" layoutY="414.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="80.0" fill="WHITE" layoutX="260.0" layoutY="487.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fill="WHITE" layoutX="158.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data wizyty:">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="160.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opis wizyty:">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="160.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przepisane leki:">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+
+        <Line endX="80.0" fill="WHITE" layoutX="260.0" layoutY="349.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fx:id="patientName" fill="WHITE" layoutX="423.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dane pacjenta">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="160.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dane pacjenta: ">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="errorPesel" fill="#200965" layoutX="641.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="errorDate" fill="#200965" layoutX="641.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+      <Line endX="80.0" fill="WHITE" layoutX="523.0" layoutY="349.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+    </children>
+</Pane>

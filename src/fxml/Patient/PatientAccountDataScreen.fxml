@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="790.0" style="-fx-background-color: #1E90FF" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Patient.PatientAccountDataController">
+    <children>
+        <TextFlow layoutX="430.0" layoutY="760.0" prefHeight="20.0" prefWidth="360.0" style="-fx-background-color: #000033; -fx-text-alignment: center; -fx-background-radius: 10px 0px 0 0;">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-family: Calibry; -fx-font-weight: 100;" text="Aleksandra Kuc - Technologie Obiektowe" textAlignment="CENTER" wrappingWidth="441.8162841796875" />
+            </children>
+        </TextFlow>
+        <Button id="menu-buttons" layoutX="268.0" layoutY="506.0" mnemonicParsing="false" onAction="#doChange" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Zatwierdź zmiany" />
+        <Text fill="WHITE" layoutX="243.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zarządzanie danymi konta">
+            <font>
+                <Font name="Calibri Bold" size="28.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientName" fill="WHITE" layoutX="257.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="imie">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Button id="menu-buttons" layoutX="268.0" layoutY="644.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
+        <Text fill="WHITE" layoutX="89.0" layoutY="594.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aby wprowadzić zmiany, wprowadź nowe dane a następnie zatwierdź je przyciskiem.">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Line endX="130.0" fill="WHITE" layoutX="205.0" layoutY="210.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="205.0" layoutY="261.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="204.0" layoutY="314.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="206.0" layoutY="314.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="206.0" layoutY="365.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="203.0" layoutY="417.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fx:id="patientLastname" fill="WHITE" layoutX="257.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nazwisko">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientDate" fill="WHITE" layoutX="257.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data urodzenia">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientAddress" fill="WHITE" layoutX="257.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adres zamieszkania">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientStatus" fill="WHITE" layoutX="256.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="status ubezpieczenia">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="105.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="105.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="105.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="106.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adres">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="104.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <TextField id="text_input" fx:id="change_input1" layoutX="473.0" layoutY="182.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />
+        <TextField id="text_input" fx:id="change_input2" layoutX="473.0" layoutY="233.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />
+        <TextField id="text_input" fx:id="change_input3" layoutX="473.0" layoutY="286.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />
+        <TextField id="text_input" fx:id="change_input4" layoutX="473.0" layoutY="338.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />
+    </children>
+</Pane>
