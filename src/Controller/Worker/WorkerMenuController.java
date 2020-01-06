@@ -14,7 +14,6 @@ public class WorkerMenuController {
         this.mainController = mainController;
     }
 
-
     @FXML
     public void ConfirmAppointment() {
         mainController.switchScreen("worker_confirm_appointment", true);

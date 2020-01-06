@@ -16,7 +16,8 @@
             </children>
         </TextFlow>
         <Button id="menu-buttons" layoutX="267.0" layoutY="637.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
-        <Button id="menu-buttons" layoutX="268.0" layoutY="574.0" mnemonicParsing="false" onAction="#declineAppoitment" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Odwołaj wizytę" />
+        <Button id="menu-buttons" layoutX="423.0" layoutY="577.0" mnemonicParsing="false" onAction="#declineAppoitment" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Odwołaj wizytę" />
+        <Button id="menu-buttons" layoutX="112.0" layoutY="577.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Wyświetl szczegóły wizyty" />
         <Text fill="WHITE" layoutX="239.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Przegląd wizyt w gabinecie">
             <font>
                 <Font name="Calibri Bold" size="28.0" />
@@ -24,9 +25,9 @@
         </Text>
         <TableView fx:id="appointment_table" layoutX="91.0" layoutY="146.0" prefHeight="416.0" prefWidth="609.0" stylesheets="@../style.css">
             <columns>
-                <TableColumn fx:id="appointment_type" prefWidth="111.0" text="Typ Wizyty" />
-                <TableColumn fx:id="doctor_spec" prefWidth="148.0" text="Specjalizacja lekarza" />
-                <TableColumn fx:id="doctor_name" prefWidth="146.0" text="Lekarz" />
+                <TableColumn fx:id="appointment_type" prefWidth="94.0" text="Typ Wizyty" />
+                <TableColumn fx:id="doctor_spec" prefWidth="155.0" text="Specjalizacja lekarza" />
+                <TableColumn fx:id="doctor_name" prefWidth="156.0" text="Lekarz" />
                 <TableColumn fx:id="date" prefWidth="93.0" text="Data" />
                 <TableColumn fx:id="status" prefWidth="110.0" text="Status" />
             </columns>

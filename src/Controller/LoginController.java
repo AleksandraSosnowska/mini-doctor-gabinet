@@ -36,12 +36,10 @@ public class LoginController {
         this.mainController = mainController;
     }
 
-
     @FXML
-    public void zaloguj_do_systemu(ActionEvent actionEvent) {
+    public void zaloguj_do_systemu() {
 
         /* Pacjenci w systemie */
-
         TypedQuery<Patient> query_patients = mainController.getEm().createQuery("SELECT p FROM Patient p", Patient.class);
         List<Patient> results = query_patients.getResultList();
         for (Patient p : results) {
@@ -71,8 +69,6 @@ public class LoginController {
 
         String login = login_input.getText();
         String password = password_input.getText();
-
-        System.out.println("login: " + login + "\nhasło: " + password);
 
         if (login.length() > 0 && password.length() > 0) {
 
@@ -107,13 +103,13 @@ public class LoginController {
             }
 
             /* Sprawdzamy w bazie danych czy jest taki użytkownik - recepcjonista*/
-            Query q3 =  mainController.getEm().createQuery("SELECT p FROM Worker p WHERE p.password = :password AND p.login = :login");
-            q2.setParameter("password", password);
-            q2.setParameter("login", login);
+            Query q3 =  mainController.getEm().createQuery("SELECT w FROM Worker w WHERE w.password = :password AND w.login = :login", Worker.class);
+            q3.setParameter("password", password);
+            q3.setParameter("login", login);
 
             try{
                 mainController.setLogged_worker((Worker) q3.getSingleResult());
-                //mainController.switchScreen("menu_pracownika", true);
+                mainController.switchScreen("worker_menu", true);
                 System.out.println("Zalogowano recepcjonistę.");
                 System.out.println(mainController.getLogged_worker());
                 return;
@@ -127,7 +123,7 @@ public class LoginController {
     }
 
     @FXML
-    public void exit(ActionEvent actionEvent) {
+    public void exit() {
         Platform.exit();
         System.exit(0);
     }

@@ -49,7 +49,31 @@
         <Line endX="150.0" fill="WHITE" layoutX="256.0" layoutY="370.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
 
         <TextField id="text_input" fx:id="dateInput" layoutX="441.0" layoutY="392.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź datę" stylesheets="@../style.css" />
-
+        <Text fx:id="errorDate" fill="#200965" layoutX="649.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Błędna data!" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="error1" fill="#200965" layoutX="649.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brak danych" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="error2" fill="#200965" layoutX="649.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brak danych" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="error3" fill="#200965" layoutX="649.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Brak danych" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="alreadyExist" fill="#200965" layoutX="252.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Posiadasz już wizytę w wybranym dniu." textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
         <ChoiceBox fx:id="typeInput" layoutX="441.0" layoutY="234.0" prefHeight="14.0" prefWidth="192.0" style="-fx-background-color: white; -fx-border-radius: 14;" />
         <ChoiceBox fx:id="specializationInput" layoutX="441.0" layoutY="287.0" prefHeight="14.0" prefWidth="192.0" style="-fx-background-color: white; -fx-border-radius: 14;" />
         <ChoiceBox fx:id="doctorInput" layoutX="442.0" layoutY="341.0" prefHeight="14.0" prefWidth="192.0" style="-fx-background-color: white; -fx-border-radius: 14;" />

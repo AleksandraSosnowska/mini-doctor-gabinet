@@ -31,6 +31,9 @@ public class PatientAccountDataController {
     public Text patientStatus;
 
     @FXML
+    public Text error;
+
+    @FXML
     public TextField change_input1;
 
     @FXML
@@ -52,16 +55,13 @@ public class PatientAccountDataController {
     public void doChange() {
         try{
             String new_name = change_input1.getText();
-
             String new_lastname = change_input2.getText();
-
             String new_date = change_input3.getText();
-
             String new_address = change_input4.getText();
 
             if (new_name.length() > 1 || new_lastname.length() > 1 || new_date.length() > 1 || new_address.length() > 1) {
 
-                /* Dokonujemy zmiany w kliencie */
+                /* Dokonujemy zmiany w koncie pacjenta*/
                 Patient changedPatient = mainController.getEm().find(Patient.class, mainController.getLogged_patient());
 
                 mainController.getEm().getTransaction().begin();
@@ -72,15 +72,17 @@ public class PatientAccountDataController {
                     try {
                         changedPatient.setBirth_date(new SimpleDateFormat("dd/MM/yyyy").parse(new_date));
                     } catch (ParseException e) {
-                        e.printStackTrace();
+                        error.setText("Błędny format daty!");
+                        System.out.println("Błędny format daty!");
                     }
                 }
-
-
                 mainController.getEm().getTransaction().commit();
 
-                /* Załadowanie od nowa strony */
+                /* Załadowanie strony od nowa */
                 mainController.switchScreen("patient_account_data", true);
+            } else {
+                error.setText("Brak danych");
+                System.out.println("Brak danych");
             }
         } catch (Exception e){
             System.out.println("Błędne dane");
@@ -88,20 +90,19 @@ public class PatientAccountDataController {
     }
 
     @FXML
-    public void backMenu(ActionEvent actionEvent) {
+    public void backMenu() {
         mainController.switchScreen("patient_menu", true);
     }
 
     public void loadData(){
 
-        /* Pobieramy z bazy danych informacje o zalogowanym pracowniku */
+        error.setText("");
+        /*wczytywanie danych pacjenta*/
         Query q1 =  mainController.getEm().createQuery("SELECT p FROM Patient p WHERE p.id = :id");
         q1.setParameter("id", mainController.getLogged_patient().getId());
 
-        /* Zapisujemy obiekt */
         Patient patient = (Patient) q1.getSingleResult();
 
-        /* Zapisujemy dane w rubrykach */
         patientName.setText(patient.getName());
         patientLastname.setText(patient.getLastname());
         Date data_urodzin = patient.getBirth_date();
@@ -112,7 +113,7 @@ public class PatientAccountDataController {
             patientStatus.setText("Ubezpieczony");
         }
         else
-            patientStatus.setText("Brak ubezpieczenia zdrowotnego");
+            patientStatus.setText("Brak ubezpieczenia");
 
     }
 }

@@ -34,6 +34,9 @@ public class DoctorCreateDescriptionController {
     @FXML
     public Text errorDate;
 
+    @FXML
+    public Text emptyData;
+
     private MainController mainController;
 
     public void setMainController(MainController mainController) {
@@ -67,18 +70,25 @@ public class DoctorCreateDescriptionController {
                     q2.setParameter("date", new_date);
                     Visit visit = (Visit) q2.getSingleResult();
 
-                    errorDate.setText("");
-                    errorPesel.setText("");
-                    patientName.setText(patient.getName() + " " + patient.getLastname());
-                    mainController.setTemp_patient(patient);
-                    mainController.setTemp_visit(visit);
+                    if (visit.getDoctor_id() == mainController.getLogged_doctor().getId()) {
+                        errorDate.setText("");
+                        errorPesel.setText("");
+                        patientName.setText(patient.getName() + " " + patient.getLastname());
+                        mainController.setTemp_patient(patient);
+                        mainController.setTemp_visit(visit);
+                    } else {
+                        emptyData.setText("Wizyta umówiona do innego lekarza");
+                        patientName.setText("");
+                        errorPesel.setText("");
+                        errorDate.setText("");
+                    }
                 }else {
-                    patientName.setText("dane pacjenta");
+                    patientName.setText("");
                     errorDate.setText("Błędna data!");
                     errorPesel.setText("");
                 }
             }else{
-                patientName.setText("dane pacjenta");
+                patientName.setText("");
                 errorPesel.setText("Błędny pesel!");
                 errorDate.setText("");
             }
@@ -94,19 +104,33 @@ public class DoctorCreateDescriptionController {
             String visit_summary = visit_description.getText();
             String new_medicines = medicines.getText();
 
-            if (visit_summary.length() > 10 && new_medicines.length() > 2){
+            if(mainController.getTemp_visit() != null && visit_summary.length() > 5 && new_medicines.length() > 2){
 
-                mainController.getEm().getTransaction().begin();
-                Visit_description new_description = new Visit_description(visit_summary, new_medicines, mainController.getTemp_visit().getId());
-                mainController.getEm().persist(new_description);
+                if(mainController.getTemp_visit().getStatusString().equals("potwierdzona")) {
+                    mainController.getEm().getTransaction().begin();
+                    Visit_description new_description = new Visit_description(visit_summary, new_medicines, mainController.getTemp_visit().getId());
+                    mainController.getEm().persist(new_description);
 
-                mainController.getEm().getTransaction().commit();
-                System.out.println("Dodano opis wizyty");
+                    mainController.getEm().getTransaction().commit();
+                    System.out.println("Dodano opis wizyty");
 
-                mainController.switchScreen("doctor_menu", true);
+                    mainController.switchScreen("doctor_menu", true);
+                } else {
+                    emptyData.setText("Wizyta nie została potwierdzona");
+                }
+            } else {
+                emptyData.setText("Wprowadź wszystkie dane!");
             }
         } catch (NullPointerException e){
             System.out.println("Nic nie zaznaczono");
         }
+    }
+
+    public void loadData(){
+        mainController.setTemp_visit(null);
+        patientName.setText("");
+        errorPesel.setText("");
+        errorDate.setText("");
+        emptyData.setText("");
     }
 }

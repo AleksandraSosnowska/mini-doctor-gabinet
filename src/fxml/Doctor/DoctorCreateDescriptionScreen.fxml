@@ -15,7 +15,7 @@
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-family: Calibry; -fx-font-weight: 100;" text="Aleksandra Kuc - Technologie Obiektowe" textAlignment="CENTER" wrappingWidth="441.8162841796875" />
             </children>
         </TextFlow>
-        <Button id="menu-buttons" layoutX="268.0" layoutY="585.0" mnemonicParsing="false" onAction="#addSummary" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Dodaj podsumowanie" />
+        <Button id="menu-buttons" layoutX="268.0" layoutY="608.0" mnemonicParsing="false" onAction="#addSummary" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Dodaj podsumowanie" />
         <Button id="menu-buttons" layoutX="422.0" layoutY="252.0" mnemonicParsing="false" onAction="#checkPatientExisting" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Wyszukaj pacjenta" />
         <Text fill="WHITE" layoutX="150.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generowanie podsumowania wizyty pacjenta">
             <font>
@@ -23,7 +23,7 @@
             </font>
         </Text>
         <TextField id="text_input" fx:id="visit_description" layoutX="424.0" layoutY="385.0" prefHeight="26.0" prefWidth="191.0" promptText="opis wizyty" stylesheets="@../style.css" />
-        <Button id="menu-buttons" layoutX="268.0" layoutY="657.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
+        <Button id="menu-buttons" layoutX="268.0" layoutY="668.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
         <Text fill="WHITE" layoutX="138.0" layoutY="543.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aby dodać podsumowanie wizyty wypełnij pola i zatwierdź przyciskiem.">
             <font>
                 <Font name="Calibri Light" size="18.0" />
@@ -80,5 +80,10 @@
             </font>
         </Text>
       <Line endX="80.0" fill="WHITE" layoutX="523.0" layoutY="349.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+      <Text fx:id="emptyData" fill="#200965" layoutX="286.0" layoutY="581.0" strokeType="OUTSIDE" strokeWidth="0.0" text="blah" textAlignment="CENTER" underline="true">
+         <font>
+            <Font name="Calibri Light" size="20.0" />
+         </font>
+      </Text>
     </children>
 </Pane>

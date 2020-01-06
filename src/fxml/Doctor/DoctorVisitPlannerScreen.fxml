@@ -15,8 +15,8 @@
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-family: Calibry; -fx-font-weight: 100;" text="Aleksandra Kuc - Technologie Obiektowe" textAlignment="CENTER" wrappingWidth="441.8162841796875" />
             </children>
         </TextFlow>
-        <Button id="menu-buttons" layoutX="268.0" layoutY="692.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
-        <Button id="menu-buttons" layoutX="92.0" layoutY="633.0" mnemonicParsing="false" onAction="#confirmAppoitment" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Potwierdź wizytę" />
+        <Button id="menu-buttons" layoutX="430.0" layoutY="692.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Powrót do menu" />
+        <Button id="menu-buttons" layoutX="92.0" layoutY="692.0" mnemonicParsing="false" onAction="#confirmAppoitment" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Potwierdź wizytę" />
         <Button id="menu-buttons" layoutX="430.0" layoutY="633.0" mnemonicParsing="false" onAction="#showPatient" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Wyświetl dane pacjenta" />
         <Text fill="WHITE" layoutX="258.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Podgląd wizyt lekarskich">
             <font>
@@ -46,5 +46,6 @@
                 <Font name="Calibri Light" size="18.0" />
             </font>
         </Text>
+        <Button id="menu-buttons" layoutX="92.0" layoutY="633.0" mnemonicParsing="false" onAction="#showDetails" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Wyświetl szczegóły wizyty" />
     </children>
 </Pane>

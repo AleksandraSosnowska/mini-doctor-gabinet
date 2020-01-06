@@ -58,15 +58,42 @@ public class DoctorVisitPlannerController {
                 q1.setParameter("id", selected.getVisit_id());
                 Visit visit = (Visit) q1.getSingleResult();
 
-                Query q2 = mainController.getEm().createQuery("SELECT p FROM Patient p WHERE p.id = :id");
-                q2.setParameter("id", visit.getPatient_id());
-                Patient patient = (Patient) q2.getSingleResult();
+                if(visit.getStatusString().equals("potwierdzona")) {
 
-                mainController.setTemp_patient(patient);
-                mainController.setTemp_visit(visit);
-                mainController.switchScreen("doctor_sumUp_appointment", true);
+                    Query q2 = mainController.getEm().createQuery("SELECT p FROM Patient p WHERE p.id = :id");
+                    q2.setParameter("id", visit.getPatient_id());
+                    Patient patient = (Patient) q2.getSingleResult();
+
+                    mainController.setTemp_patient(patient);
+                    mainController.setTemp_visit(visit);
+                    mainController.switchScreen("doctor_sumUp_appointment", true);
+                }
             }
         } catch (NullPointerException e){
+            System.out.println("Nic nie zaznaczono");
+        }
+    }
+
+    @FXML
+    public void showDetails(){
+        try {
+            UserAppointment selected = appointment_table.getSelectionModel().getSelectedItem();
+            if (selected.getVisit_id() > 0) {
+
+                System.out.println("planner: " + selected);
+
+                Query q1 = mainController.getEm().createQuery("SELECT v FROM Visit v WHERE v.id = :id", Visit.class);
+                q1.setParameter("id", selected.getVisit_id());
+                Visit visit = (Visit) q1.getSingleResult();
+
+                System.out.println("planner: " + visit);
+
+                mainController.setTemp_visit(visit);
+                System.out.println("przetwarzam");
+                mainController.switchScreen("doctor_show_details_appointment", true);
+            }
+
+        } catch (NullPointerException e) {
             System.out.println("Nic nie zaznaczono");
         }
     }

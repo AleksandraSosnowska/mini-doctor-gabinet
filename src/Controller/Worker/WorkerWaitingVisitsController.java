@@ -1,7 +1,8 @@
-package Controller.Patient;
+package Controller.Worker;
 
 import Controller.MainController;
 import TableClasses.UserAppointment;
+import java_files.Patient;
 import java_files.Visit;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,19 +17,22 @@ import javax.persistence.TypedQuery;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class PatientViewVisitsController {
+public class WorkerWaitingVisitsController {
 
     @FXML
-    public TableView <UserAppointment> appointment_table;
+    public TableView<UserAppointment> appointment_table;
 
     @FXML
-    public TableColumn <UserAppointment, String> appointment_type;
+    public TableColumn<UserAppointment, String> appointment_type;
 
     @FXML
     public TableColumn <UserAppointment, String> doctor_spec;
 
     @FXML
     public TableColumn <UserAppointment, String> doctor_name;
+
+    @FXML
+    public TableColumn <UserAppointment, String> patient_name;
 
     @FXML
     public TableColumn <UserAppointment, String> date;
@@ -46,28 +50,7 @@ public class PatientViewVisitsController {
 
     @FXML
     public void backMenu() {
-        mainController.switchScreen("patient_menu", true);
-    }
-
-    @FXML
-    public void showDetails(){
-
-        try {
-            UserAppointment choosen = appointment_table.getSelectionModel().getSelectedItem();
-            System.out.println("Zaznaczona wizyta: " + choosen);
-
-            if (choosen.getVisit_id() > 0) {
-
-                Query q1 = mainController.getEm().createQuery("SELECT v FROM Visit v WHERE v.id = :id");
-                q1.setParameter("id", choosen.getVisit_id());
-                Visit finder = (Visit) q1.getSingleResult();
-
-                mainController.setTemp_visit(finder);
-                mainController.switchScreen("patient_show_details_appointments", true);
-            }
-        } catch (NullPointerException e){
-            System.out.println("Nic nie zaznaczono");
-        }
+        mainController.switchScreen("worker_menu", true);
     }
 
     @FXML
@@ -82,15 +65,35 @@ public class PatientViewVisitsController {
                 q1.setParameter("id", choosen.getVisit_id());
                 Visit finder = (Visit) q1.getSingleResult();
 
-                if(finder.getStatusString().equals("oczekująca") || finder.getStatusString().equals("potwierdzona")) {
+                Visit new_visit = mainController.getEm().find(Visit.class, finder);
 
-                    Visit zmiana_wizyty = mainController.getEm().find(Visit.class, finder);
+                mainController.getEm().getTransaction().begin();
+                new_visit.setStatus("declined");
+                mainController.getEm().getTransaction().commit();
+                mainController.switchScreen("worker_waiting_appointment", true);
+            }
+        } catch (NullPointerException e){
+            System.out.println("Nic nie zaznaczono");
+        }
+    }
+    @FXML
+    public void confirmAppoitment(){
+        try {
+            UserAppointment choosen = appointment_table.getSelectionModel().getSelectedItem();
+            System.out.println("Zaznaczona wizyta: " + choosen);
 
-                    mainController.getEm().getTransaction().begin();
-                    zmiana_wizyty.setStatus("declined");
-                    mainController.getEm().getTransaction().commit();
-                    mainController.switchScreen("patient_view_appointments", true);
-                }
+            if (choosen.getVisit_id() > 0) {
+
+                Query q1 = mainController.getEm().createQuery("SELECT v FROM Visit v WHERE v.id = :id");
+                q1.setParameter("id", choosen.getVisit_id());
+                Visit finder = (Visit) q1.getSingleResult();
+
+                Visit new_visit = mainController.getEm().find(Visit.class, finder);
+
+                mainController.getEm().getTransaction().begin();
+                new_visit.setStatus("confirmed");
+                mainController.getEm().getTransaction().commit();
+                mainController.switchScreen("worker_waiting_appointment", true);
             }
         } catch (NullPointerException e){
             System.out.println("Nic nie zaznaczono");
@@ -99,22 +102,32 @@ public class PatientViewVisitsController {
 
     public void loadData(){
         try {
-            TypedQuery<Visit> query_visits = mainController.getEm().createQuery("SELECT v FROM Visit v WHERE v.patient_id = :id", Visit.class);
-            query_visits.setParameter("id", mainController.getLogged_patient().getId());
+            TypedQuery<Visit> query_visits = mainController.getEm().createQuery("SELECT v FROM Visit v", Visit.class);
+            //query_visits.setParameter("status", "WAITING");
 
-            List<Visit> appointments = query_visits.getResultList();
+            List<Visit> visit_list = query_visits.getResultList();
             Doctor temp_doctor = null;
+            Patient temp_patient = null;
 
-            for (Visit temp_visit : appointments) {
+            for (Visit temp_visit : visit_list) {
 
-                /* Pobieramy dane lekarza */
-                Query q2 = mainController.getEm().createQuery("SELECT p FROM Doctor p WHERE p.id = :id");
-                q2.setParameter("id", temp_visit.getDoctor_id());
-                temp_doctor = (Doctor) q2.getSingleResult();
+                System.out.println(temp_visit);
+                if(temp_visit.getStatusString().equals("oczekująca")){
+                    /* Pobieramy dane lekarza */
+                    Query q2 = mainController.getEm().createQuery("SELECT d FROM Doctor d WHERE d.id = :id");
+                    q2.setParameter("id", temp_visit.getDoctor_id());
+                    temp_doctor = (Doctor) q2.getSingleResult();
 
-                appointment_list.add(new UserAppointment(temp_visit.getId(), temp_visit.getVisitType(),
-                        temp_doctor.getSpecialization(), temp_doctor.getName() + " " + temp_doctor.getLastname(),
-                        new SimpleDateFormat("dd/MM/yyyy").format(temp_visit.getVisit_date()), temp_visit.getStatusString(), ""));
+                    Query q3 = mainController.getEm().createQuery("SELECT p FROM Patient p WHERE p.id = :id");
+                    q3.setParameter("id", temp_visit.getPatient_id());
+                    temp_patient = (Patient) q3.getSingleResult();
+
+                    appointment_list.add(new UserAppointment(temp_visit.getId(), temp_visit.getVisitType(),
+                            temp_doctor.getSpecialization(), temp_doctor.getName() + " " + temp_doctor.getLastname(),
+                            new SimpleDateFormat("dd/MM/yyyy").format(temp_visit.getVisit_date()), temp_visit.getStatusString(),
+                            temp_patient.getName() + " " + temp_patient.getLastname()));
+                }
+
             }
 
         }catch (Exception e){
@@ -127,6 +140,7 @@ public class PatientViewVisitsController {
         appointment_type.setCellValueFactory(new PropertyValueFactory<>("appointment_type"));
         doctor_spec.setCellValueFactory(new PropertyValueFactory<>("doctor_spec"));
         doctor_name.setCellValueFactory(new PropertyValueFactory<>("doctor_name"));
+        patient_name.setCellValueFactory(new PropertyValueFactory<>("patient_name"));
         date.setCellValueFactory(new PropertyValueFactory<>("date"));
         status.setCellValueFactory(new PropertyValueFactory<>("status"));
         appointment_table.setItems(appointment_list);

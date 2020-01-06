@@ -83,6 +83,11 @@
                 <Font name="Calibri Bold" size="20.0" />
             </font>
         </Text>
+        <Text fx:id="error" fill="#200965" layoutX="515.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Błędne dane!" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
         <TextField id="text_input" fx:id="change_input1" layoutX="473.0" layoutY="182.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />
         <TextField id="text_input" fx:id="change_input2" layoutX="473.0" layoutY="233.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />
         <TextField id="text_input" fx:id="change_input3" layoutX="473.0" layoutY="286.0" prefHeight="26.0" prefWidth="191.0" promptText="Wprowadź zmianę" stylesheets="@../style.css" />

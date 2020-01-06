@@ -9,10 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class PatientCreateVisitController {
@@ -28,6 +30,21 @@ public class PatientCreateVisitController {
 
     @FXML
     public ChoiceBox doctorInput;
+
+    @FXML
+    public Text errorDate;
+
+    @FXML
+    public Text error1;
+
+    @FXML
+    public Text error2;
+
+    @FXML
+    public Text error3;
+
+    @FXML
+    public Text alreadyExist;
 
     private Thread getDoctorsThread;
 
@@ -48,41 +65,98 @@ public class PatientCreateVisitController {
 
     @FXML
     public void createAppoitment() {
+        String read_date = dateInput.getText();
+        String new_type = null;
+        String new_doctor = null;
+        Date new_date = null;
+        boolean correctDate = true;
 
-        try {
-            String new_date = dateInput.getText();
-            String new_type = (String) typeInput.getValue();
-            String new_spec = (String) specializationInput.getValue();
-            String new_doctor = (String) doctorInput.getValue();
+        if (typeInput.getValue() != null) {
+            if (specializationInput.getValue() != null){
+                if(doctorInput.getValue() != null){
+                    if(read_date.length() == 10){
+                        try {
+                            new_date = new SimpleDateFormat("dd/MM/yyyy").parse(read_date);
+                            new_type = (String) typeInput.getValue();
+                            new_doctor = (String) doctorInput.getValue();
 
+                            TypedQuery<Visit> query_visits = mainController.getEm().createQuery("SELECT v FROM Visit v WHERE v.patient_id = :id", Visit.class);
+                            query_visits.setParameter("id", mainController.getLogged_patient().getId());
+                            List<Visit> results = query_visits.getResultList();
+                            for (Visit v : results) {
+                                if(v.getVisit_date().equals(new_date)) correctDate = false;
+                            }
 
-            if (new_date.length() == 10 && new_type.length() > 2 && new_spec.length() > 2 && new_doctor.length() > 2) {
+                            if(correctDate == true) {
+                                Query q1 = mainController.getEm().createQuery("SELECT d FROM Doctor d WHERE d.lastname = :nazwa");
+                                q1.setParameter("nazwa", new_doctor);
+                                Doctor choosen_doctor = (Doctor) q1.getSingleResult();
 
-                Query q1 = mainController.getEm().createQuery("SELECT d FROM Doctor d WHERE d.lastname = :nazwa");
-                q1.setParameter("nazwa", new_doctor);
-                Doctor choosen_doctor = (Doctor) q1.getSingleResult();
+                                mainController.getEm().getTransaction().begin();
+                                Visit new_appointment = new Visit(new_type, new_date, mainController.getLogged_patient().getId(), choosen_doctor.getId());
+                                mainController.getEm().persist(new_appointment);
+                                mainController.getEm().getTransaction().commit();
+                                System.out.println("Dodano wizyte");
+                                mainController.switchScreen("patient_create_appointments", true);
+                            } else {
+                                alreadyExist.setText("Posiadasz już wizytę w wybranym dniu.");
+                                error1.setText("");
+                                error2.setText("");
+                                error3.setText("");
+                                errorDate.setText("");
+                            }
 
-                mainController.getEm().getTransaction().begin();
-                Visit new_appointment = new Visit(new_type, new SimpleDateFormat("dd/MM/yyyy").parse(new_date), mainController.getLogged_patient().getId(), choosen_doctor.getId());
-                mainController.getEm().persist(new_appointment);
-                mainController.getEm().getTransaction().commit();
-                System.out.println("Dodano wizyte");
-//                getDoctorsThread.stop();
-                mainController.switchScreen("patient_create_appointments", true);
+                        } catch (Exception e) {
+                            error1.setText("");
+                            error2.setText("");
+                            error3.setText("");
+                            alreadyExist.setText("");
+                            errorDate.setText("błędna data!");
+                        }
+                    } else {
+                        error1.setText("");
+                        error2.setText("");
+                        error3.setText("");
+                        alreadyExist.setText("");
+                        errorDate.setText("błędna data!");
+                    }
+                } else {
+                    error1.setText("");
+                    error2.setText("");
+                    error3.setText("brak danych");
+                    alreadyExist.setText("");
+                    errorDate.setText("");
+                }
+            } else {
+                error1.setText("");
+                error2.setText("brak danych");
+                error3.setText("");
+                alreadyExist.setText("");
+                errorDate.setText("");
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            error1.setText("brak danych");
+            error2.setText("");
+            error3.setText("");
+            alreadyExist.setText("");
+            errorDate.setText("");
         }
     }
 
     public void loadData() {
 
         /* Przesyłamy do choice boxów informacje o możliwych typach wizyty i specjalizacjach lekarzy */
+        errorDate.setText("");
+        error1.setText("");
+        error2.setText("");
+        error3.setText("");
+        alreadyExist.setText("");
 
-        typeInput.getItems().add("private");
-        typeInput.getItems().add("home");
-        typeInput.getItems().add("nfz");
+        typeInput.getItems().add("prywatna");
+        typeInput.getItems().add("domowa");
+
+        if(mainController.getLogged_patient().getInsurance_status() == true)
+            typeInput.getItems().add("nfz");
 
         specializationInput.getItems().add("Lekarz rodzinny");
         specializationInput.getItems().add("Kardiolog");
@@ -108,7 +182,6 @@ public class PatientCreateVisitController {
 
         @Override
         public void run() {
-            String prev_specialization = " ";
             String temp_specialization = " ";
             try {
                 temp_specialization = (String) specializationInput.getValue();
@@ -117,7 +190,6 @@ public class PatientCreateVisitController {
             }
             if (temp_specialization != null) {
 
-                prev_specialization = temp_specialization;
                 TypedQuery<Doctor> q1 = mainController.getEm().createQuery("SELECT d FROM Doctor d WHERE d.specialization = :nazwa", Doctor.class);
                 q1.setParameter("nazwa", temp_specialization);
 

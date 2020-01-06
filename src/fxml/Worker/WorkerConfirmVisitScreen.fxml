@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="790.0" style="-fx-background-color: #1E90FF;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Worker.WorkerConfirmVisitController">
+    <children>
+        <TextFlow layoutX="430.0" layoutY="760.0" prefHeight="20.0" prefWidth="360.0" style="-fx-background-color: #000033; -fx-text-alignment: center; -fx-background-radius: 10px 0px 0 0;">
+            <children>
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: white; -fx-font-family: Calibry; -fx-font-weight: 100;" text="Aleksandra Kuc - Technologie Obiektowe" textAlignment="CENTER" wrappingWidth="441.8162841796875" />
+            </children>
+        </TextFlow>
+        <Button id="menu-buttons" layoutX="272.0" layoutY="686.0" mnemonicParsing="false" onAction="#backMenu" prefHeight="40.0" prefWidth="280.0" stylesheets="@../style.css" text="Powrót do menu" />
+        <Text fill="WHITE" layoutX="213.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Zatwierdź oczekującą wizytę" wrappingWidth="366.5859375">
+            <font>
+                <Font name="Calibri Bold" size="30.0" />
+            </font>
+        </Text>
+        <Button id="menu-buttons" layoutX="88.0" layoutY="608.0" mnemonicParsing="false" onAction="#ConfirmAppointment" prefHeight="40.0" prefWidth="280.0" stylesheets="@../style.css" text="Zatwierdź wizytę" />
+        <Line endX="150.0" fill="WHITE" layoutX="196.0" layoutY="174.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fill="WHITE" layoutX="98.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pesel pacjenta">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <TextField id="pesel_input" fx:id="visitPesel" layoutX="236.0" layoutY="139.0" prefHeight="40.0" prefWidth="155.0" promptText="wprowadź pesel" stylesheets="@../style.css" />
+        <Text fx:id="patientName" fill="WHITE" layoutX="242.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="imie">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="165.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wprowadź pesel pacjenta oraz datę wizyty aby wyświetlić szczegóły:">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <TextField id="pesel_input" fx:id="visitDate" layoutX="562.0" layoutY="144.0" prefHeight="28.0" prefWidth="155.0" promptText="wprowadź datę" stylesheets="@../style.css" />
+        <Line endX="150.0" fill="WHITE" layoutX="190.0" layoutY="309.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="190.0" layoutY="360.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="189.0" layoutY="461.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="190.0" layoutY="461.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="190.0" layoutY="512.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="190.0" layoutY="407.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fx:id="patientLastname" fill="WHITE" layoutX="242.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nazwisko">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientDate" fill="WHITE" layoutX="242.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data urodzenia">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientAddress" fill="WHITE" layoutX="242.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adres zamieszkania">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="patientAge" fill="WHITE" layoutX="240.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="wiek">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="90.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="90.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="90.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data urodzenia">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="90.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adres">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="90.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wiek">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Line endX="150.0" fill="WHITE" layoutX="190.0" layoutY="561.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fx:id="patientStatus" fill="WHITE" layoutX="240.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="status ubezpieczenia">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="90.0" layoutY="553.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Button id="menu-buttons" layoutX="264.0" layoutY="195.0" mnemonicParsing="false" onAction="#loadVisitDetails" prefHeight="40.0" prefWidth="255.0" stylesheets="@../style.css" text="Wyszukaj Wizytę" />
+        <Text fx:id="errorPesel" fill="#200965" layoutX="88.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Błędny pesel!" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Line endX="150.0" fill="WHITE" layoutX="523.0" layoutY="174.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fill="WHITE" layoutX="425.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data wizyty">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="errorDate" fill="#200965" layoutX="579.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Błędna data!" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="visitType" fill="WHITE" layoutX="585.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="typ wizyty">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Line endX="150.0" fill="WHITE" layoutX="533.0" layoutY="330.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="533.0" layoutY="381.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="130.0" fill="WHITE" layoutX="532.0" layoutY="482.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="533.0" layoutY="482.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Line endX="150.0" fill="WHITE" layoutX="533.0" layoutY="428.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fx:id="specialization" fill="WHITE" layoutX="585.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="specjalizacja">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="doctorLastname" fill="WHITE" layoutX="585.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nazwisko lekarza">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fx:id="doctorName" fill="WHITE" layoutX="583.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="imie lekarza">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="433.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Typ wizyty">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="433.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Specjalizacja">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="433.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nazwisko lekarza">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+         </font>
+        </Text>
+        <Text fill="WHITE" layoutX="433.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imię lekarza">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Line endX="150.0" fill="WHITE" layoutX="533.0" layoutY="530.0" startX="-100.0" stroke="WHITE" strokeWidth="2.0" />
+        <Text fx:id="visitStatus" fill="WHITE" layoutX="583.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="status wizyty">
+            <font>
+                <Font name="Calibri Light" size="18.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="433.0" layoutY="522.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status wizyty">
+            <font>
+                <Font name="Calibri Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="errorStatus" fill="#200965" layoutX="259.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wizyta nie posiada statusu oczekująca" textAlignment="CENTER" underline="true">
+            <font>
+                <Font name="Calibri Light" size="20.0" />
+            </font>
+        </Text>
+        <Button id="menu-buttons" layoutX="457.0" layoutY="608.0" mnemonicParsing="false" onAction="#declineAppointment" prefHeight="40.0" prefWidth="280.0" stylesheets="@../style.css" text="Odrzuć wizytę" />
+    </children>
+</Pane>

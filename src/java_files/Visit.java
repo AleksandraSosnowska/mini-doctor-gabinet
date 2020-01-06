@@ -32,7 +32,7 @@ public class Visit implements Serializable {
     }
 
     public enum VisitType {
-        PRIVATE ("private"), HOME ("home"), NFZ ("nfz");
+        PRIVATE ("prywatna"), HOME ("domowa"), NFZ ("nfz");
         String type;
         VisitType(String type){
             this.type = type;
@@ -43,9 +43,9 @@ public class Visit implements Serializable {
 
         static VisitType getEnumType(String type) {
             switch(type.toLowerCase().trim()) {
-                case "private":
+                case "prywatna":
                     return VisitType.PRIVATE;
-                case "home":
+                case "domowa":
                     return VisitType.HOME;
                 case "nfz":
                     return VisitType.NFZ;
@@ -59,9 +59,9 @@ public class Visit implements Serializable {
     public String getVisitType(){
         switch(visit_type) {
             case PRIVATE:
-                return "private";
+                return "prywatna";
             case HOME:
-                return "home";
+                return "domowa";
             case NFZ:
                 return "nfz";
             default:
@@ -70,7 +70,7 @@ public class Visit implements Serializable {
     }
 
     public enum VisitStatus {
-        WAITING ("waiting"), CONFIRMED ("confirmed"), PAST ("past"), DECLINED ("declined");
+        WAITING ("oczekująca"), CONFIRMED ("potwierdzona"), PAST ("przeszła"), DECLINED ("odrzucona");
         String type;
         VisitStatus(String status){
             this.type = type;
@@ -92,13 +92,13 @@ public class Visit implements Serializable {
     public String getStatusString(){
         switch(status){
             case WAITING:
-                return "waiting";
+                return "oczekująca";
             case CONFIRMED:
-                return  "confirmed";
+                return "potwierdzona";
             case PAST:
-                return "past";
+                return "przeszła";
             case DECLINED:
-                return "declined";
+                return "odrzucona";
             default:
                 System.out.println("Źle ustawiony status wizyty");
         }
@@ -155,7 +155,8 @@ public class Visit implements Serializable {
                 ", patient_id = " + patient_id +
                 ", doctor_id = " + doctor_id +
                 ", visit_type: " + visit_type +
-                ", visit_date = " + visit_date + '\'' +
+                ", visit_date = " + visit_date +
+                ", visit_status = " + status +
                 '}';
     }
 }

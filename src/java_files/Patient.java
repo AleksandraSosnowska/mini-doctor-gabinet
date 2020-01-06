@@ -46,6 +46,7 @@ public class Patient extends User implements Serializable {
     public boolean getInsurance_status(){
         return insurance_status;
     }
+
     public String getHome_address(){
         return home_address;
     }
