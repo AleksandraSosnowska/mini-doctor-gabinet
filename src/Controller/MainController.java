@@ -15,11 +15,7 @@ import java_files.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-import javax.print.Doc;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 public class MainController {
 
@@ -32,7 +28,6 @@ public class MainController {
 
     private Patient temp_patient;
     private Doctor temp_doctor;
-    private Worker temp_worker;
     private Visit temp_visit;
 
     @FXML
@@ -41,53 +36,10 @@ public class MainController {
     @FXML
     public void initialize(){
 
-        createDatabase();
-        switchScreen("menu", true);
-    }
-
-    private void createDatabase() {
-
+        //łączenie z bazą danych
         emf = Persistence.createEntityManagerFactory("$objectdb/db/clinicDataBase.odb");
         em = emf.createEntityManager();
-        long countClients = 0;
-
-        try {
-            Query q1 = em.createQuery("SELECT COUNT(p) FROM Patient p");
-            countClients = (long) q1.getSingleResult();
-            System.out.println("Liczba klientow w systemie: " + countClients);
-            if (countClients == 2) return;
-        } catch (Exception e) {
-            System.out.println("Brak klientow w systemie, generuję nowych klientów...");
-        }
-
-        /*Patient pacjent;
-        Doctor doktor;
-        Worker pracownik;
-        Visit wizyta;
-        Visit wizyta2;
-        Visit wizyta3;
-        em.getTransaction().begin();
-        System.out.println("dodaję wizyty");
-        try{
-           *//* pacjent = new Patient("pacjent2", "pacjent2", "Imię", "Nazwisko", 21, new SimpleDateFormat("dd/MM/yyyy").parse("31/10/1998"), "98103104923", true, "Fabryczna");
-            em.persist(pacjent);
-            doktor = new Doctor("doktor2", "doktor2", "Imię", "Nazwisko", "Laryngolog", "");
-            em.persist(doktor);
-            pracownik = new Worker("pracownik", "pracownik", "Imię", "Nazwisko", 4, "Sportowa 20");
-            em.persist(pracownik);*//*
-
-            wizyta = new Visit("home",new SimpleDateFormat("dd/MM/yyyy").parse("15/02/2020"), 1,6);
-            System.out.println("dodaje wizyte1");
-            em.persist(wizyta);
-            wizyta2 = new Visit("private",new SimpleDateFormat("dd/MM/yyyy").parse("10/03/2020"), 5,2);
-            em.persist(wizyta2);
-            wizyta3 = new Visit("nfz",new SimpleDateFormat("dd/MM/yyyy").parse("23/01/2020"), 5,6);
-            em.persist(wizyta3);
-            em.getTransaction().commit();
-
-        } catch (ParseException e) {
-            System.out.println("nie udało sie");
-        }*/
+        switchScreen("menu", true);
     }
 
     public EntityManager getEm() {
@@ -313,10 +265,6 @@ public class MainController {
     public void setTemp_doctor(Doctor temp_doctor){ this.temp_doctor = temp_doctor; }
 
     public Doctor getTemp_doctor() { return temp_doctor; }
-
-    public void setTemp_worker(Worker temp_worker){ this.temp_worker = temp_worker; }
-
-    public Worker getTemp_worker() { return temp_worker; }
 
     public void setTemp_visit(Visit temp_visit){ this.temp_visit = temp_visit; }
 
